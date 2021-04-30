@@ -13,7 +13,7 @@ async function authenticated (socket, next) {
     const { id } = jwt.verify(token, process.env.JWT_SECRET)
     // 找出該使用者資訊
     const user = await User.findByPk(id, {
-      attributes: ['id', 'name', 'account', 'email', 'avatar', 'role']
+      attributes: ['id', 'name', 'account', 'avatar']
     })
     // 存進 socket
     if (user) {

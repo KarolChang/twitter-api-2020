@@ -32,18 +32,18 @@ app.use((err, req, res, next) => {
 
 // set socket.io
 app.get('/chat', (req, res) => {
-  res.sendFile( __dirname + '/sockets/chat.html')
+  res.sendFile( __dirname + '/sockets/index.html')
 })
-app.get('/chat/:room', (req, res) => {
-  res.sendFile( __dirname + '/sockets/room.html')
-})
+
 const server = http.createServer(app)
-const io = socketIo(server, {
-  cors: {
-    origin: '*',
-    credentials: true
-  }
-})
+// const io = socketIo(server, {
+//   cors: {
+//     origin: '*',
+//     credentials: true
+//   }
+// })
+const io = socketIo(server)
+
 require('./sockets/socketServer.js')(io)
 server.listen(port, () => console.log(`Socket server listening on port ${port}!`))
 
