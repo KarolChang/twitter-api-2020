@@ -17,7 +17,7 @@ async function authenticated (socket, next) {
     })
     // 存進 socket
     if (user) {
-      socket.user = user
+      socket.user = user.toJSON()
       socket.user.socketId = socket.id
       // socket.user.channel = 'publicRoom'
       next()

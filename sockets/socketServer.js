@@ -54,6 +54,7 @@ module.exports = (io) => {
     // listen for userMsg
     socket.on('userMsg', async (msg) => {
       const msgData = formatMessage(socket.user.name, msg)
+      msgData.avatar = socket.user.avatar
       io.emit('chatMsg', msgData)
       // store in db
       if (msgData.text && msgData.time) {
